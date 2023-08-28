@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/mirzazohaib/ecommerce-website-nodejs.git#readme",
   "devDependencies": {
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.2.1"
   }
 }
