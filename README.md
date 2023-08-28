@@ -1,3 +1,3 @@
 # ecommerce-website-nodejs
 
-Welcome to my functional e-commerce website inspired by amazon. Websire is built using MERN stack (MongoDB, ExpressJS, React and Node.JS).
+Welcome to my functional e-commerce website inspired by Amazon. The website is built using the MERN stack (MongoDB, ExpressJS, TypeScript / React and Node.JS).
