@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix ecommerce-backend-nodejs\"  \"npm run dev --prefix ecommerce-frontend-nodejs\" ",
     "build": "cd ecommerce-backend-nodejs && npm install && npm run build  && cd ../ecommerce-frontend-nodejs && npm install && npm run build",
-    "start": "TG_ALLOW_MIXED=ALLOW  node ecommerce-backend-nodejs/build/index.js",
+    "start": "TG_ALLOW_MIXED=ALLOW node ecommerce-backend-nodejs/build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
