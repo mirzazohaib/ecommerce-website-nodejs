@@ -1,7 +1,7 @@
 import cors from 'cors'
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
 import express, { Request, Response } from 'express'
+import mongoose from 'mongoose'
 import path from 'path'
 import { productRouter } from './routers/productRouter'
 import { seedRouter } from './routers/seedRouter'
@@ -39,13 +39,9 @@ app.use('/api/seed', seedRouter)
 app.use('/api/orders', orderRouter)
 app.use('/api/keys', keyRouter)
 
-app.use(
-  express.static(path.join(__dirname, '../../ecommerce-frontend-nodejs/dist'))
-)
+app.use(express.static(path.join(__dirname, '../../frontend/dist')))
 app.get('*', (req: Request, res: Response) =>
-  res.sendFile(
-    path.join(__dirname, '../../ecommerce-frontend-nodejs/dist/index.html')
-  )
+  res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'))
 )
 
 const PORT: number = parseInt((process.env.PORT || '4000') as string, 10)
