@@ -1,0 +1,25 @@
+{
+  "name": "ecommerce-website-nodejs",
+  "version": "1.0.0",
+  "description": "e-commerce website using MERN stack (MongoDB, ExpressJS, React and Node.JS)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix ecommerce-backend-nodejs\"  \"npm run dev --prefix ecommerce-frontend-nodejs\" ",
+    "build": "cd ecommerce-backend-nodejs && npm install && npm run build  && cd ../ecommerce-frontend-nodejs && npm install && npm run build",
+    "start": "TG_ALLOW_MIXED=ALLOW  node ecommerce-backend-nodejs/build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirzazohaib/ecommerce-website-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mirzazohaib/ecommerce-website-nodejs.git/issues"
+  },
+  "homepage": "https://github.com/mirzazohaib/ecommerce-website-nodejs.git#readme",
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
