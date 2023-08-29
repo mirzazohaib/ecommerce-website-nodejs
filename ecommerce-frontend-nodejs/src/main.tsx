@@ -17,16 +17,17 @@ import ProductPage from './pages/ProductPage'
 import CartPage from './pages/CartPage'
 import SigninPage from './pages/SigninPage'
 import SignupPage from './pages/SignupPage'
+import PaymentMethodPage from './pages/PaymentMethodPage'
+import ShippingAddressPage from './pages/ShippingAddressPage'
+import OrderHistoryPage from './pages/OrderHistoryPage'
+import ProfilePage from './pages/ProfilePage'
+import PlaceOrderPage from './pages/PlaceOrderPage'
+import OrderPage from './pages/OrderPage'
 
 //import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
-import PaymentMethodPage from './pages/PaymentMethodPage'
-import ShippingAddressPage from './pages/ShippingAddressPage'
 import ProtectedRoute from './components/Routes/ProtectedRoute'
-import PlaceOrderPage from './pages/PlaceOrderPage'
-import OrderPage from './pages/OrderPage'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
-import OrderHistoryPage from './pages/OrderHistoryPage'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +43,7 @@ const router = createBrowserRouter(
         <Route path="placeorder" element={<PlaceOrderPage />} />
         <Route path="/order/:id" element={<OrderPage />} />
         <Route path="/orderhistory" element={<OrderHistoryPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
 
       {/* <Route path="dashboard" element={<Dashboard />} /> */}
