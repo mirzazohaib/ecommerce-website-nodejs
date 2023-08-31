@@ -147,26 +147,21 @@ function App() {
               </Button>
             </div>
           </ListGroup.Item>
-          {
-            isLoading ? (
-              <LoadingBox />
-            ) : error ? (
-              <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
-            ) : (
-              <LoadingBox />
-            )
-            // : (
-            //   categories!.map((category) => (
-            //     <ListGroup.Item action key={category}>
-            //       <LinkContainer
-            //         to={{ pathname: '/search', search: `category=${category}` }}
-            //         onClick={() => setSidebarIsOpen(false)}>
-            //         <Nav.Link>{category}</Nav.Link>
-            //       </LinkContainer>
-            //     </ListGroup.Item>
-            //   ))
-            // )
-          }
+          {isLoading ? (
+            <LoadingBox />
+          ) : error ? (
+            <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
+          ) : (
+            categories!.map((category) => (
+              <ListGroup.Item action key={category}>
+                <LinkContainer
+                  to={{ pathname: '/search', search: `category=${category}` }}
+                  onClick={() => setSidebarIsOpen(false)}>
+                  <Nav.Link>{category}</Nav.Link>
+                </LinkContainer>
+              </ListGroup.Item>
+            ))
+          )}
         </ListGroup>
       </div>
 
