@@ -54,7 +54,6 @@ function App() {
             <LinkContainer to="/" className="header-link">
               <Navbar.Brand>Ecommerce Website</Navbar.Brand>
             </LinkContainer>
-            <SearchBox />
 
             <Navbar.Collapse>
               <Nav className="w-100 justify-content-end">
