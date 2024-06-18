@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --files src/index.ts",
-    "build": "tsc",
+    "build": "tsc -o dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
