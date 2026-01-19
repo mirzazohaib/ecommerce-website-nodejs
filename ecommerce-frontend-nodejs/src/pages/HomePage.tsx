@@ -22,7 +22,8 @@ const HomePage = () => {
       </Helmet>
       {Array.isArray(products) &&
         products.map((product) => (
-          <Col key={product.slug} sm={6} md={4} lg={3}>
+          // FIXED: Added 'mb-3' to create space below each card
+          <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
             <ProductItem product={product} />
           </Col>
         ))}

@@ -108,11 +108,17 @@ function App() {
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}>
                 <i className="fas fa-bars"></i> All
               </Link>
-              {['Todays Deal', 'Gifts', 'On Sale'].map((x) => (
-                <Link key={x} className="nav-link header-link p-1 px-3" to={`/search?tag=${x}`}>
-                  {x}
-                </Link>
-              ))}
+
+              {/* FIXED LINKS: Mapping "concepts" to actual working Categories */}
+              <Link className="nav-link header-link p-1 px-3" to="/search?category=Shoes">
+                Today's Deal
+              </Link>
+              <Link className="nav-link header-link p-1 px-3" to="/search?category=Accessories">
+                Gifts
+              </Link>
+              <Link className="nav-link header-link p-1 px-3" to="/search?category=Pants">
+                On Sale
+              </Link>
             </div>
           </div>
         </Navbar>
