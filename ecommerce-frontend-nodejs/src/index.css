@@ -7,9 +7,19 @@
   -webkit-text-size-adjust: 100%;
 }
 
+/* FIXED: Force all product images to be the same size */
 .product-image {
-  max-width: 400px;
-  width: 100%;
+  width: 100%; /* Fill the width of the card */
+  height: 250px; /* FORCE exact height for all images */
+  object-fit: contain; /* show whole image without cropping */
+  padding: 15px; /* add breathing room inside the card */
+}
+
+/* Optional: Make the card text area align neatly */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .rating span {
@@ -121,4 +131,39 @@ a.header-link:hover,
 
 button.side-navbar-user:hover {
   color: white;
+}
+
+/* Add vertical spacing between rows of products */
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+/* Ensure all columns inside the product grid have breathing room */
+.products-row > [class*='col-'] {
+  margin-bottom: 20px; /* Adds 20px space below every card */
+}
+
+/* --------------------------------------------------- */
+/* DARK MODE CARD FIXES                                */
+/* --------------------------------------------------- */
+
+/* Force Cards to be dark when data-bs-theme="dark" is active */
+[data-bs-theme='dark'] .card {
+  background-color: #343a40 !important; /* Dark Gray */
+  color: #f8f9fa !important; /* White Text */
+  border-color: #495057; /* Dark Border */
+}
+
+/* Fix Link colors inside cards so they are readable on dark background */
+[data-bs-theme='dark'] .card a {
+  color: #6ea8fe; /* Light Blue */
+}
+
+[data-bs-theme='dark'] .card a:hover {
+  color: #9ec5fe; /* Lighter Blue */
+}
+
+/* Ensure the card body doesn't override the text color */
+[data-bs-theme='dark'] .card-body {
+  color: inherit;
 }

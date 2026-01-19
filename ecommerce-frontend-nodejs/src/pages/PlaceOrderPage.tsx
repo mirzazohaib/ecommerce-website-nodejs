@@ -14,10 +14,12 @@ export default function PlaceOrderPage() {
   const navigate = useNavigate()
 
   const { state, dispatch } = useContext(store)
-  const { cart, userInfo } = state
+  const { cart } = state
 
-  const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100 // 123.2345 => 123.23
+  // Helper to round numbers
+  const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100
 
+  // Calculate prices
   cart.itemsPrice = round2(cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0))
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10)
   cart.taxPrice = round2(0.15 * cart.itemsPrice)
@@ -89,17 +91,29 @@ export default function PlaceOrderPage() {
                 {cart.cartItems.map((item) => (
                   <ListGroup.Item key={item._id}>
                     <Row className="align-items-center">
-                      <Col md={6}>
+                      {/* 1. Image Column: Small and constrained */}
+                      <Col md={2}>
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="img-fluid rounded thumbnail"></img>{' '}
+                          className="img-fluid rounded"
+                          // Inline style ensures specific size for this page only
+                          style={{ height: '50px', width: '50px', objectFit: 'cover' }}
+                        />
+                      </Col>
+
+                      {/* 2. Name Column */}
+                      <Col md={4}>
                         <Link to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
+
+                      {/* 3. Quantity Column */}
                       <Col md={3}>
                         <span>{item.quantity}</span>
                       </Col>
-                      <Col md={3}>${item.price}</Col>
+
+                      {/* 4. Price Column: Shows LINE TOTAL (Unit Price * Quantity) */}
+                      <Col md={3}>${(item.price * item.quantity).toFixed(2)}</Col>
                     </Row>
                   </ListGroup.Item>
                 ))}

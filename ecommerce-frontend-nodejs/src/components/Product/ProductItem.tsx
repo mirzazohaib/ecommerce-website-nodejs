@@ -1,13 +1,11 @@
 import { Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { toast } from 'react-toastify'
-
-import { Product } from '../../types/Product'
 import Rating from '../Rating/Rating'
+import { useContext } from 'react'
 import { store } from '../../redux/store'
-import { CartItem } from '../../types/Cart'
 import { convertProductToCartItem } from '../../utils/utils'
+import { Product } from '../../types/Product'
+import { toast } from 'react-toastify'
 
 function ProductItem({ product }: { product: Product }) {
   const { state, dispatch } = useContext(store)
@@ -15,7 +13,7 @@ function ProductItem({ product }: { product: Product }) {
     cart: { cartItems }
   } = state
 
-  const addToCartHandler = (item: CartItem) => {
+  const addToCartHandler = (item: Product) => {
     const existItem = cartItems.find((x) => x._id === product._id)
     const quantity = existItem ? existItem.quantity + 1 : 1
     if (product.countInStock < quantity) {
@@ -24,15 +22,16 @@ function ProductItem({ product }: { product: Product }) {
     }
     dispatch({
       type: 'CART_ADD_ITEM',
-      payload: { ...item, quantity }
+      payload: { ...convertProductToCartItem(item), quantity }
     })
     toast.success('Product added to the cart')
   }
 
   return (
-    <Card className="card">
+    <Card className="h-100">
       <Link to={`/product/${product.slug}`}>
-        <img src={product.image} className="card-img-top" alt={product.name} />
+        {/* FIXED: Added 'product-image' class here */}
+        <img src={product.image} className="card-img-top product-image" alt={product.name} />
       </Link>
       <Card.Body>
         <Link to={`/product/${product.slug}`}>
@@ -45,7 +44,7 @@ function ProductItem({ product }: { product: Product }) {
             Out of stock
           </Button>
         ) : (
-          <Button onClick={() => addToCartHandler(convertProductToCartItem(product))}>
+          <Button onClick={() => addToCartHandler(product)} className="btn-primary">
             Add to cart
           </Button>
         )}
@@ -53,5 +52,4 @@ function ProductItem({ product }: { product: Product }) {
     </Card>
   )
 }
-
 export default ProductItem

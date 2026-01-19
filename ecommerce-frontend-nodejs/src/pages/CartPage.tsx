@@ -54,13 +54,22 @@ const CartPage = () => {
               {cartItems.map((item: CartItem) => (
                 <ListGroup.Item key={item._id}>
                   <Row className="align-items-center">
-                    <Col md={4}>
+                    {/* 1. Image Column: Constrained size (Fixed "Big Card" issue) */}
+                    <Col md={2}>
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="img-fluid rounded thumbnail"></img>{' '}
+                        className="img-fluid rounded"
+                        style={{ height: '50px', width: '50px', objectFit: 'cover' }}
+                      />
+                    </Col>
+
+                    {/* 2. Name Column: Separated for better alignment */}
+                    <Col md={3}>
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
                     </Col>
+
+                    {/* 3. Quantity Controls */}
                     <Col md={3}>
                       <Button
                         onClick={() => updateCartHandler(item, item.quantity - 1)}
@@ -68,7 +77,7 @@ const CartPage = () => {
                         disabled={item.quantity === 1}>
                         <i className="fas fa-minus-circle"></i>
                       </Button>{' '}
-                      <span>{item.quantity}</span>
+                      <span>{item.quantity}</span>{' '}
                       <Button
                         variant={mode}
                         onClick={() => updateCartHandler(item, item.quantity + 1)}
@@ -76,8 +85,12 @@ const CartPage = () => {
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
-                    <Col md={3}>€{item.price}</Col>
-                    <Col md={2}>
+
+                    {/* 4. Price Column: FIXED to show Line Total (Price * Quantity) */}
+                    <Col md={3}>€{(item.price * item.quantity).toFixed(2)}</Col>
+
+                    {/* 5. Delete Button */}
+                    <Col md={1}>
                       <Button onClick={() => removeItemHandler(item)} variant={mode}>
                         <i className="fas fa-trash"></i>
                       </Button>
@@ -95,7 +108,7 @@ const CartPage = () => {
                 <ListGroup.Item>
                   <h3>
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} items) : €
-                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0).toFixed(2)}
                   </h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
